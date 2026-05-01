@@ -77,6 +77,14 @@
   .contact-inner h2 { margin-bottom: 1rem; }
   .contact-inner p { font-size: 1rem; color: var(--muted); margin-bottom: 2.5rem; line-height: 1.7; }
   .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .contact-form { text-align: left; display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .form-group input, .form-group textarea { padding: 0.85rem 1rem; background: var(--ivory); border: 1px solid var(--border); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--dark); outline: none; transition: border-color 0.2s; resize: none; }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(107,101,96,0.5); }
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
   footer { padding: 2rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--muted); letter-spacing: 0.04em; }
   .fade-up { opacity: 0; transform: translateY(24px); animation: fadeUp 0.7s ease forwards; }
   @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
@@ -297,10 +305,33 @@
       <h2>Contact</h2>
     </div>
     <p>Tu veux collaborer, recruter, ou simplement échanger ?<br>N'hésite pas à me contacter.</p>
-    <div class="contact-links">
-      <a href="mailto:ton@email.com" class="btn-primary">Envoyer un email</a>
+
+    <form action="https://formspree.io/f/xeenogww" method="POST" class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="prenom">Prénom</label>
+          <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
+        </div>
+        <div class="form-group">
+          <label for="nom">Nom</label>
+          <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="Votre message..." required></textarea>
+      </div>
+      <input type="hidden" name="_replyto" value="minzoudd@gmail.com">
+      <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">Envoyer le message</button>
+    </form>
+
+    <div class="contact-links" style="margin-top:2rem;">
       <a href="https://github.com/monia-inz" target="_blank" class="btn-secondary">GitHub</a>
-      <a href="https://linkedin.com/in/ton-profil" target="_blank" class="btn-secondary">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/inzouddinemonia" target="_blank" class="btn-secondary">LinkedIn</a>
     </div>
   </div>
 </section>
