@@ -84,17 +84,48 @@
   .form-group input, .form-group textarea { padding: 0.85rem 1rem; background: var(--ivory); border: 1px solid var(--border); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--dark); outline: none; transition: border-color 0.2s; resize: none; }
   .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
   .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(107,101,96,0.5); }
+  /* HAMBURGER MENU */
+  .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+  .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--dark); transition: all 0.3s; }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
   @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
   footer { padding: 2rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--muted); letter-spacing: 0.04em; }
   .fade-up { opacity: 0; transform: translateY(24px); animation: fadeUp 0.7s ease forwards; }
   @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
   .delay-1 { animation-delay: 0.15s; } .delay-2 { animation-delay: 0.3s; } .delay-3 { animation-delay: 0.45s; } .delay-4 { animation-delay: 0.6s; }
   @media (max-width: 900px) {
-    nav { padding: 1.2rem 1.5rem; }
+    /* NAV MOBILE */
+    nav { padding: 1rem 1.5rem; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      display: none;
+      position: fixed; top: 60px; left: 0; right: 0;
+      background: rgba(245,240,232,0.98);
+      backdrop-filter: blur(12px);
+      flex-direction: column; align-items: center;
+      gap: 0; padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      z-index: 99;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; text-align: center; }
+    .nav-links a { display: block; padding: 1rem; font-size: 0.9rem; border-bottom: 1px solid var(--border); }
+    .nav-links li:last-child a { border-bottom: none; }
+
+    /* HERO MOBILE */
     .hero { grid-template-columns: 1fr; }
-    .hero-left { padding: 3rem 1.5rem; border-right: none; border-bottom: 1px solid var(--border); }
+    .hero-left { padding: 3rem 1.5rem; border-right: none; border-bottom: 1px solid var(--border); text-align: center; align-items: center; }
+    .hero-tag { justify-content: center; }
+    .hero-ctas { justify-content: center; }
     .hero-right { padding: 2rem 1.5rem; }
+    .hero-stats { margin: 0 auto; width: 100%; }
+    .stat { padding: 1.2rem; text-align: center; }
+    .stat-number { font-size: 1.8rem; }
     .hero-decoration { display: none; }
+
     section { padding: 4rem 1.5rem; }
     .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .projects-grid { grid-template-columns: 1fr; }
@@ -107,11 +138,14 @@
 
 <nav>
   <a href="#" class="nav-logo">M. Inzouddine</a>
+  <button class="nav-toggle" onclick="this.classList.toggle('open'); document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
   <ul class="nav-links">
-    <li><a href="#about">Profil</a></li>
-    <li><a href="#projects">Projets</a></li>
-    <li><a href="#videos">Vidéos</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about" onclick="document.querySelector('.nav-links').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Profil</a></li>
+    <li><a href="#projects" onclick="document.querySelector('.nav-links').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Projets</a></li>
+    <li><a href="#videos" onclick="document.querySelector('.nav-links').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Vidéos</a></li>
+    <li><a href="#contact" onclick="document.querySelector('.nav-links').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Contact</a></li>
   </ul>
 </nav>
 
